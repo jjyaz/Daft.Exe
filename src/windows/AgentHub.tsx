@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Bot, Activity, TrendingUp, Play, Pause } from 'lucide-react';
+import { Bot, Activity, TrendingUp, Play, Pause, GraduationCap } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { getMockUserId } from '../lib/mockAuth';
 import { aiEngine } from '../lib/ai';
 import { soundManager } from '../lib/sounds';
+import TrainingCenter from './TrainingCenter';
 
 export const AgentHub: React.FC = () => {
   const [agents, setAgents] = useState<any[]>([]);
   const [deploying, setDeploying] = useState(false);
   const [agentName, setAgentName] = useState('');
   const [showDeployForm, setShowDeployForm] = useState(false);
+  const [showTrainingCenter, setShowTrainingCenter] = useState(false);
 
   useEffect(() => {
     loadAgents();
@@ -91,6 +93,10 @@ export const AgentHub: React.FC = () => {
     ));
   };
 
+  if (showTrainingCenter) {
+    return <TrainingCenter userId={getMockUserId()} />;
+  }
+
   return (
     <div className="p-4 bg-white">
       <div className="flex items-center gap-2 mb-4">
@@ -99,6 +105,16 @@ export const AgentHub: React.FC = () => {
       </div>
 
       <div className="mb-4">
+        <button
+          className="win98-button mr-2"
+          onClick={() => {
+            soundManager.playClick();
+            setShowTrainingCenter(true);
+          }}
+        >
+          <GraduationCap size={14} className="inline mr-1" />
+          Training Center
+        </button>
         <button
           className="win98-button mr-2"
           onClick={() => setShowDeployForm(!showDeployForm)}
