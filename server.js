@@ -6,12 +6,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const connection = new Connection('https://rpc.ankr.com/solana', {
+const connection = new Connection('https://api.mainnet-beta.solana.com', {
   commitment: 'confirmed',
   confirmTransactionInitialTimeout: 60000
 });
 
-console.log('Solana RPC Proxy Server initialized with endpoint: https://rpc.ankr.com/solana');
+console.log('Solana RPC Proxy Server initialized with endpoint: https://api.mainnet-beta.solana.com');
 
 app.get('/api/getBalance', async (req, res) => {
   const { address } = req.query;
@@ -95,7 +95,7 @@ app.get('/api/getAccountInfo', async (req, res) => {
 });
 
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', endpoint: 'https://rpc.ankr.com/solana' });
+  res.json({ status: 'ok', endpoint: 'https://api.mainnet-beta.solana.com' });
 });
 
 const PORT = process.env.PORT || 3001;

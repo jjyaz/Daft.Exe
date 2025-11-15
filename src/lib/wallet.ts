@@ -2,8 +2,8 @@ import { Connection, PublicKey, Keypair, Transaction, SystemProgram, LAMPORTS_PE
 import { createMint, getMinimumBalanceForRentExemptMint, TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import { BackendService } from './backendService';
 
-const SOLANA_RPC = 'https://rpc.ankr.com/solana';
-const USE_BACKEND_API = true;
+const SOLANA_RPC = 'https://api.mainnet-beta.solana.com';
+const USE_BACKEND_API = false;
 
 export class WalletManager {
   connection: Connection;
