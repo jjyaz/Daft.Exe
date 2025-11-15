@@ -11,6 +11,13 @@ import { AgentHub } from '../windows/AgentHub';
 import { DaftLab } from '../windows/DaftLab';
 import { BridgePortal } from '../windows/BridgePortal';
 import { SecurityScanner } from '../windows/SecurityScanner';
+import { TokenSwap } from '../windows/TokenSwap';
+import { Portfolio } from '../windows/Portfolio';
+import { PriceAlerts } from '../windows/PriceAlerts';
+import { WalletManager } from '../windows/WalletManager';
+import { TokenReviews } from '../windows/TokenReviews';
+import { Leaderboard } from '../windows/Leaderboard';
+import { WhaleWatcher } from '../windows/WhaleWatcher';
 
 const windowComponents: { [key: string]: React.FC } = {
   DaftGenerator,
@@ -23,6 +30,13 @@ const windowComponents: { [key: string]: React.FC } = {
   DaftLab,
   BridgePortal,
   SecurityScanner,
+  TokenSwap,
+  Portfolio,
+  PriceAlerts,
+  WalletManager,
+  TokenReviews,
+  Leaderboard,
+  WhaleWatcher,
 };
 
 export const WindowManager: React.FC = () => {

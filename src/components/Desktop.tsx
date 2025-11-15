@@ -4,24 +4,33 @@ import { useAppContext } from '../context/AppContext';
 import { soundManager } from '../lib/sounds';
 import {
   Cpu, Settings, Wallet, Image, Globe,
-  Shield, Bot, Beaker, GitBranch, Search
+  Shield, Bot, Beaker, GitBranch, Search,
+  ArrowDownUp, PieChart, Bell, Eye, MessageSquare, Trophy, Activity
 } from 'lucide-react';
 
 const DESKTOP_ICONS: DesktopIconType[] = [
-  { id: 'daft-generator', label: 'Daft Generator', icon: 'Cpu', component: 'DaftGenerator' },
-  { id: 'control-panel', label: 'Control Panel', icon: 'Settings', component: 'ControlPanel' },
+  { id: 'token-swap', label: 'Token Swap', icon: 'ArrowDownUp', component: 'TokenSwap' },
+  { id: 'portfolio', label: 'Portfolio', icon: 'PieChart', component: 'Portfolio' },
   { id: 'my-wallet', label: 'My Wallet', icon: 'Wallet', component: 'MyWallet' },
+  { id: 'daft-generator', label: 'Daft Generator', icon: 'Cpu', component: 'DaftGenerator' },
+  { id: 'price-alerts', label: 'Price Alerts', icon: 'Bell', component: 'PriceAlerts' },
+  { id: 'wallet-manager', label: 'Wallet Manager', icon: 'Eye', component: 'WalletManager' },
+  { id: 'token-reviews', label: 'Token Reviews', icon: 'MessageSquare', component: 'TokenReviews' },
+  { id: 'leaderboard', label: 'Leaderboard', icon: 'Trophy', component: 'Leaderboard' },
+  { id: 'whale-watcher', label: 'Whale Watcher', icon: 'Activity', component: 'WhaleWatcher' },
+  { id: 'bridge-portal', label: 'Bridge Portal', icon: 'GitBranch', component: 'BridgePortal' },
   { id: 'gallery', label: 'Gallery', icon: 'Image', component: 'Gallery' },
-  { id: 'network', label: 'Network Neighborhood', icon: 'Globe', component: 'NetworkNeighborhood' },
-  { id: 'privacy', label: 'Privacy Shield', icon: 'Shield', component: 'PrivacyShield' },
   { id: 'agent-hub', label: 'Agent Hub', icon: 'Bot', component: 'AgentHub' },
   { id: 'daft-lab', label: 'Daft Lab', icon: 'Beaker', component: 'DaftLab' },
-  { id: 'bridge-portal', label: 'Bridge Portal', icon: 'GitBranch', component: 'BridgePortal' },
   { id: 'security-scanner', label: 'Security Scanner', icon: 'Search', component: 'SecurityScanner' },
+  { id: 'control-panel', label: 'Control Panel', icon: 'Settings', component: 'ControlPanel' },
+  { id: 'network', label: 'Network', icon: 'Globe', component: 'NetworkNeighborhood' },
+  { id: 'privacy', label: 'Privacy Shield', icon: 'Shield', component: 'PrivacyShield' },
 ];
 
 const iconComponents = {
-  Cpu, Settings, Wallet, Image, Globe, Shield, Bot, Beaker, GitBranch, Search
+  Cpu, Settings, Wallet, Image, Globe, Shield, Bot, Beaker, GitBranch, Search,
+  ArrowDownUp, PieChart, Bell, Eye, MessageSquare, Trophy, Activity
 };
 
 export const Desktop: React.FC = () => {
