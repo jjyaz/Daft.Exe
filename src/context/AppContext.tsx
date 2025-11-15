@@ -100,20 +100,44 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const connectWallet = async () => {
     try {
       soundManager.playClick();
-      console.log('Starting wallet connection...');
+      console.log('=== WALLET CONNECTION START ===');
+      console.log('Timestamp:', new Date().toISOString());
+      console.log('Window object available:', typeof window !== 'undefined');
+      console.log('Window.solana available:', typeof (window as any).solana !== 'undefined');
+      console.log('Window.solflare available:', typeof (window as any).solflare !== 'undefined');
+
+      if (typeof window !== 'undefined') {
+        const solana = (window as any).solana;
+        if (solana) {
+          console.log('Phantom detected:', solana.isPhantom);
+          console.log('Phantom connected:', solana.isConnected);
+        }
+      }
+
+      console.log('Calling walletManager.connectWallet()...');
       const wallet = await walletManager.connectWallet();
-      console.log('Wallet connected:', wallet);
+      console.log('Wallet connected successfully:', wallet);
+
       setWalletAddress(wallet.address);
       setWalletBalance(wallet.balance);
       setWalletConnected(true);
       soundManager.playSuccess();
+
+      console.log('Initializing user in Supabase...');
       await initializeMockUser(supabase, wallet.address);
 
+      console.log('Fetching fresh balance...');
       const freshBalance = await walletManager.getBalance();
-      console.log('Fresh balance after connection:', freshBalance);
+      console.log('Fresh balance:', freshBalance, 'SOL');
       setWalletBalance(freshBalance);
+
+      console.log('=== WALLET CONNECTION SUCCESS ===');
     } catch (error: any) {
-      console.error('Wallet connection error:', error);
+      console.error('=== WALLET CONNECTION ERROR ===');
+      console.error('Error type:', error.constructor.name);
+      console.error('Error message:', error.message);
+      console.error('Error stack:', error.stack);
+      console.error('Full error object:', error);
       soundManager.playError();
 
       let errorMessage = 'Failed to connect wallet';
@@ -127,7 +151,9 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         }
       }
 
+      console.error('Displaying error to user:', errorMessage);
       alert(errorMessage);
+      throw error;
     }
   };
 

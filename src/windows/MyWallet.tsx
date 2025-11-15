@@ -129,6 +129,46 @@ export const MyWallet: React.FC = () => {
     }
   };
 
+  const [connectionStatus, setConnectionStatus] = useState('');
+  const [walletDetected, setWalletDetected] = useState(false);
+
+  useEffect(() => {
+    const checkWallet = () => {
+      if (typeof window !== 'undefined') {
+        const solana = (window as any).solana;
+        const solflare = (window as any).solflare;
+
+        if (solana?.isPhantom) {
+          setWalletDetected(true);
+          setConnectionStatus('Phantom wallet detected');
+        } else if (solflare) {
+          setWalletDetected(true);
+          setConnectionStatus('Solflare wallet detected');
+        } else {
+          setWalletDetected(false);
+          setConnectionStatus('No Solana wallet detected. Please install Phantom or Solflare extension.');
+        }
+      }
+    };
+
+    checkWallet();
+    const interval = setInterval(checkWallet, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleConnectWallet = async () => {
+    setConnectionStatus('Attempting connection...');
+    soundManager.playClick();
+
+    try {
+      await connectWallet();
+      setConnectionStatus('Connected successfully!');
+    } catch (error: any) {
+      setConnectionStatus(`Connection failed: ${error.message}`);
+      soundManager.playError();
+    }
+  };
+
   if (!walletConnected) {
     return (
       <div className="p-4 bg-white">
@@ -138,10 +178,38 @@ export const MyWallet: React.FC = () => {
         </div>
 
         <div className="text-center p-8">
-          <button className="win98-button" onClick={connectWallet}>
-            Connect Wallet
+          <div className="win98-inset p-4 mb-4 text-left">
+            <h3 className="font-bold mb-2">Wallet Status</h3>
+            <div className="text-sm space-y-2">
+              <div className="flex items-center gap-2">
+                <div className={`w-2 h-2 rounded-full ${walletDetected ? 'bg-green-500' : 'bg-red-500'}`} />
+                <span>{connectionStatus || 'Checking for wallet...'}</span>
+              </div>
+              {walletDetected && (
+                <div className="text-xs text-gray-600 mt-2">
+                  Click the button below to connect
+                </div>
+              )}
+              {!walletDetected && (
+                <div className="text-xs text-blue-600 mt-2">
+                  Install Phantom from chrome.google.com/webstore or phantom.app
+                </div>
+              )}
+            </div>
+          </div>
+
+          <button
+            className="win98-button"
+            onClick={handleConnectWallet}
+            disabled={!walletDetected}
+          >
+            {walletDetected ? 'Connect Wallet' : 'Wallet Not Found'}
           </button>
-          <p className="mt-4 text-sm">Connect Phantom or Solflare</p>
+
+          <div className="mt-4 text-xs text-gray-600">
+            <p>Supported wallets: Phantom, Solflare</p>
+            <p className="mt-2">Console logs available in DevTools (F12)</p>
+          </div>
         </div>
       </div>
     );
