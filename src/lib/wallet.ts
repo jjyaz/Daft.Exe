@@ -1,4 +1,5 @@
 import { Connection, PublicKey, Keypair, Transaction, SystemProgram, LAMPORTS_PER_SOL } from '@solana/web3.js';
+import { createMint, getMinimumBalanceForRentExemptMint, TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import { BackendService } from './backendService';
 
 const SOLANA_RPC = 'https://rpc.ankr.com/solana';
@@ -141,11 +142,50 @@ export class WalletManager {
     }
   }
 
-  async createToken(): Promise<string> {
+  async createToken(decimals: number = 9): Promise<string> {
     if (!this.publicKey) throw new Error('Wallet not connected');
 
-    const mint = Keypair.generate();
-    return mint.publicKey.toString();
+    try {
+      console.log('Creating SPL token with decimals:', decimals);
+      console.log('Mint authority (wallet):', this.publicKey.toString());
+
+      if (typeof window !== 'undefined') {
+        const solana = (window as any).solana;
+        const solflare = (window as any).solflare;
+        const wallet = solana?.isPhantom ? solana : solflare;
+
+        if (!wallet) {
+          throw new Error('No wallet found for signing transactions');
+        }
+
+        const mintKeypair = Keypair.generate();
+        console.log('Generated mint keypair:', mintKeypair.publicKey.toString());
+
+        const lamports = await getMinimumBalanceForRentExemptMint(this.connection);
+        console.log('Rent-exempt balance required:', lamports, 'lamports');
+
+        const mintPubkey = await createMint(
+          this.connection,
+          {
+            publicKey: this.publicKey,
+            signTransaction: wallet.signTransaction.bind(wallet),
+            signAllTransactions: wallet.signAllTransactions.bind(wallet),
+          } as any,
+          this.publicKey,
+          this.publicKey,
+          decimals,
+          mintKeypair
+        );
+
+        console.log('SPL Token created successfully:', mintPubkey.toString());
+        return mintPubkey.toString();
+      }
+
+      throw new Error('Window object not available');
+    } catch (error: any) {
+      console.error('Error creating SPL token:', error);
+      throw new Error('Failed to create token: ' + error.message);
+    }
   }
 
   isWalletInstalled(): { phantom: boolean; solflare: boolean } {

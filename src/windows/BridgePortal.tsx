@@ -112,6 +112,11 @@ export const BridgePortal: React.FC = () => {
         <h2 className="text-lg font-bold">Agent Bridge Portal</h2>
       </div>
 
+      <div className="win98-inset p-3 mb-4 bg-yellow-50 border border-yellow-600 text-xs">
+        <strong>Note:</strong> Bridge is UI simulation only. Does not execute real cross-chain swaps.
+        Integrate Wormhole, Allbridge, or Portal Bridge SDK for actual cross-chain transfers.
+      </div>
+
       <div className="win98-inset p-4 mb-4">
         <h3 className="font-bold mb-2">Cross-Chain Agent Migration</h3>
         <div className="space-y-2">

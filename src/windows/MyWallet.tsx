@@ -222,6 +222,11 @@ export const MyWallet: React.FC = () => {
         <h2 className="text-lg font-bold">DeFi Yield Farming</h2>
       </div>
 
+      <div className="win98-inset p-3 mb-4 bg-yellow-50 border border-yellow-600 text-xs">
+        <strong>Note:</strong> Staking is database-only simulation. Does not lock real SOL on-chain.
+        Deploy a Solana staking program with PDAs for real on-chain staking.
+      </div>
+
       <div className="win98-inset p-4 mb-4">
         <h3 className="font-bold mb-2">Wallet Balance</h3>
         <div className="flex items-center gap-2 mb-2">

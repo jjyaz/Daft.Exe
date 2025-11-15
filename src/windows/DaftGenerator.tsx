@@ -12,16 +12,20 @@ export const DaftGenerator: React.FC = () => {
   const [deploying, setDeploying] = useState(false);
   const [result, setResult] = useState<any>(null);
   const [deployed, setDeployed] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const handleGenerate = async () => {
     setGenerating(true);
+    setErrorMsg('');
     soundManager.playClick();
 
     try {
+      console.log('Generating memecoin concept with AI...');
       const concept = await aiEngine.generateMemecoinConcept(tokenName);
       setResult(concept);
       soundManager.playSuccess();
 
+      console.log('Saving concept to database...');
       await supabase.from('memecoins').insert([
         {
           user_id: getMockUserId(),
@@ -32,8 +36,10 @@ export const DaftGenerator: React.FC = () => {
           deployed: false
         }
       ]);
-    } catch (error) {
+      console.log('Concept saved successfully');
+    } catch (error: any) {
       console.error('Error generating memecoin:', error);
+      setErrorMsg('AI generation uses local TensorFlow.js model. Full features require cloud AI API.');
       soundManager.playError();
     } finally {
       setGenerating(false);
@@ -43,11 +49,22 @@ export const DaftGenerator: React.FC = () => {
   const handleDeploy = async () => {
     if (!result) return;
 
+    if (!walletManager.publicKey) {
+      setErrorMsg('Please connect your wallet first');
+      soundManager.playError();
+      return;
+    }
+
     setDeploying(true);
+    setErrorMsg('');
     soundManager.playClick();
 
     try {
-      const mintAddress = await walletManager.createToken();
+      console.log('Creating real SPL token on Solana mainnet...');
+      console.log('This requires SOL for rent and transaction fees');
+
+      const mintAddress = await walletManager.createToken(9);
+      console.log('SPL token created:', mintAddress);
 
       const { data } = await supabase
         .from('memecoins')
@@ -64,9 +81,11 @@ export const DaftGenerator: React.FC = () => {
         setResult({ ...result, contract_address: mintAddress });
         setDeployed(true);
         soundManager.playSuccess();
+        console.log('Token deployment successful!');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error deploying token:', error);
+      setErrorMsg('Token deployment failed: ' + error.message + '. You need SOL for rent (~0.002 SOL) and transaction fees.');
       soundManager.playError();
     } finally {
       setDeploying(false);
@@ -79,6 +98,17 @@ export const DaftGenerator: React.FC = () => {
         <Sparkles size={24} color="var(--pink-accent)" />
         <h2 className="text-lg font-bold">AI Memecoin Generator</h2>
       </div>
+
+      <div className="win98-inset p-3 mb-4 bg-yellow-50 border border-yellow-600 text-xs">
+        <strong>Note:</strong> Token deployment creates REAL SPL tokens on Solana mainnet.
+        Requires connected wallet with SOL for rent (~0.002 SOL) and transaction fees.
+      </div>
+
+      {errorMsg && (
+        <div className="win98-inset p-3 mb-4 bg-red-50 border border-red-600 text-xs">
+          <strong>Error:</strong> {errorMsg}
+        </div>
+      )}
 
       <div className="mb-4">
         <label className="block mb-2 font-bold">Token Name:</label>
