@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 
 const DESKTOP_ICONS: DesktopIconType[] = [
+  { id: 'wallet-test', label: 'Wallet Test', icon: 'Search', component: 'WalletTest' },
   { id: 'token-swap', label: 'Token Swap', icon: 'ArrowDownUp', component: 'TokenSwap' },
   { id: 'portfolio', label: 'Portfolio', icon: 'PieChart', component: 'Portfolio' },
   { id: 'my-wallet', label: 'My Wallet', icon: 'Wallet', component: 'MyWallet' },

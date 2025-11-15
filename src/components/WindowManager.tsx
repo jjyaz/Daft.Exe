@@ -18,6 +18,7 @@ import { WalletManager } from '../windows/WalletManager';
 import { TokenReviews } from '../windows/TokenReviews';
 import { Leaderboard } from '../windows/Leaderboard';
 import { WhaleWatcher } from '../windows/WhaleWatcher';
+import { WalletTest } from '../windows/WalletTest';
 
 const windowComponents: { [key: string]: React.FC } = {
   DaftGenerator,
@@ -37,6 +38,7 @@ const windowComponents: { [key: string]: React.FC } = {
   TokenReviews,
   Leaderboard,
   WhaleWatcher,
+  WalletTest,
 };
 
 export const WindowManager: React.FC = () => {
