@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FileText, Copy, Check, ExternalLink } from 'lucide-react';
 
-const CONTRACT_ADDRESS = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+const CONTRACT_ADDRESS = 'F4ZL8sHPXAoUaAQ6DVY4Si6uhHu9T5dvciNozdPZdoge';
 
 export default function ContractAddress() {
   const [copied, setCopied] = useState(false);
