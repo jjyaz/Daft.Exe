@@ -5,13 +5,10 @@ import { soundManager } from '../lib/sounds';
 import {
   Cpu, Settings, Wallet, Image, Globe,
   Shield, Bot, Beaker, GitBranch, Search,
-  ArrowDownUp, PieChart, Bell, Eye, MessageSquare, Trophy, Activity, FileText, Sparkles, Swords
+  ArrowDownUp, PieChart, Bell, Eye, MessageSquare, Trophy, Activity, FileText
 } from 'lucide-react';
 
 const DESKTOP_ICONS: DesktopIconType[] = [
-  { id: 'swarm-dashboard', label: 'Swarm Dashboard', icon: 'Activity', component: 'SwarmDashboard' },
-  { id: 'agent-evolution', label: 'Agent Evolution', icon: 'Sparkles', component: 'AgentEvolution' },
-  { id: 'swarm-battle', label: 'Swarm Battle', icon: 'Swords', component: 'SwarmBattle' },
   { id: 'contract-address', label: 'Contract Address', icon: 'FileText', component: 'ContractAddress' },
   { id: 'wallet-test', label: 'Wallet Test', icon: 'Search', component: 'WalletTest' },
   { id: 'token-swap', label: 'Token Swap', icon: 'ArrowDownUp', component: 'TokenSwap' },
@@ -35,7 +32,7 @@ const DESKTOP_ICONS: DesktopIconType[] = [
 
 const iconComponents = {
   Cpu, Settings, Wallet, Image, Globe, Shield, Bot, Beaker, GitBranch, Search,
-  ArrowDownUp, PieChart, Bell, Eye, MessageSquare, Trophy, Activity, FileText, Sparkles, Swords
+  ArrowDownUp, PieChart, Bell, Eye, MessageSquare, Trophy, Activity, FileText
 };
 
 export const Desktop: React.FC = () => {

@@ -20,9 +20,6 @@ import { Leaderboard } from '../windows/Leaderboard';
 import { WhaleWatcher } from '../windows/WhaleWatcher';
 import { WalletTest } from '../windows/WalletTest';
 import ContractAddress from '../windows/ContractAddress';
-import { SwarmDashboard } from '../windows/SwarmDashboard';
-import { AgentEvolution } from '../windows/AgentEvolution';
-import { SwarmBattle } from '../windows/SwarmBattle';
 
 const windowComponents: { [key: string]: React.FC } = {
   DaftGenerator,
@@ -44,9 +41,6 @@ const windowComponents: { [key: string]: React.FC } = {
   WhaleWatcher,
   WalletTest,
   ContractAddress,
-  SwarmDashboard,
-  AgentEvolution,
-  SwarmBattle,
 };
 
 export const WindowManager: React.FC = () => {
