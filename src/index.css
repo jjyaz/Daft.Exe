@@ -51,7 +51,7 @@ body {
 
 .desktop-bg {
   background-color: var(--teal-bg);
-  background-image: url('/daft.exe.jpg');
+  background-image: url('/daft-image.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
