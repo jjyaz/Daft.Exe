@@ -5,12 +5,13 @@ import { soundManager } from '../lib/sounds';
 import {
   Cpu, Settings, Wallet, Image, Globe,
   Shield, Bot, Beaker, GitBranch, Search,
-  ArrowDownUp, PieChart, Bell, Eye, MessageSquare, Trophy, Activity, FileText
+  ArrowDownUp, PieChart, Bell, Eye, MessageSquare, Trophy, Activity, FileText, Brain
 } from 'lucide-react';
 
 const DESKTOP_ICONS: DesktopIconType[] = [
   { id: 'contract-address', label: 'Contract Address', icon: 'FileText', component: 'ContractAddress' },
   { id: 'wallet-test', label: 'Wallet Test', icon: 'Search', component: 'WalletTest' },
+  { id: 'prediction-markets', label: 'Prediction Markets', icon: 'Brain', component: 'PredictionMarkets' },
   { id: 'token-swap', label: 'Token Swap', icon: 'ArrowDownUp', component: 'TokenSwap' },
   { id: 'portfolio', label: 'Portfolio', icon: 'PieChart', component: 'Portfolio' },
   { id: 'my-wallet', label: 'My Wallet', icon: 'Wallet', component: 'MyWallet' },
@@ -32,7 +33,7 @@ const DESKTOP_ICONS: DesktopIconType[] = [
 
 const iconComponents = {
   Cpu, Settings, Wallet, Image, Globe, Shield, Bot, Beaker, GitBranch, Search,
-  ArrowDownUp, PieChart, Bell, Eye, MessageSquare, Trophy, Activity, FileText
+  ArrowDownUp, PieChart, Bell, Eye, MessageSquare, Trophy, Activity, FileText, Brain
 };
 
 export const Desktop: React.FC = () => {
