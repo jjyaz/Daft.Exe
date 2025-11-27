@@ -23,6 +23,7 @@ import ContractAddress from '../windows/ContractAddress';
 import { PredictionMarkets } from '../windows/PredictionMarkets';
 import { SwarmBreeding } from '../windows/SwarmBreeding';
 import { GeneticsLab } from '../windows/GeneticsLab';
+import { StrategyMarketplace } from '../windows/StrategyMarketplace';
 
 const windowComponents: { [key: string]: React.FC } = {
   DaftGenerator,
@@ -47,6 +48,7 @@ const windowComponents: { [key: string]: React.FC } = {
   PredictionMarkets,
   SwarmBreeding,
   GeneticsLab,
+  StrategyMarketplace,
 };
 
 export const WindowManager: React.FC = () => {

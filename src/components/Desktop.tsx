@@ -5,7 +5,7 @@ import { soundManager } from '../lib/sounds';
 import {
   Cpu, Settings, Wallet, Image, Globe,
   Shield, Bot, Beaker, GitBranch, Search,
-  ArrowDownUp, PieChart, Bell, Eye, MessageSquare, Trophy, Activity, FileText, Brain, Dna, Microscope
+  ArrowDownUp, PieChart, Bell, Eye, MessageSquare, Trophy, Activity, FileText, Brain, Dna, Microscope, ShoppingCart, Radio, Lock
 } from 'lucide-react';
 
 const DESKTOP_ICONS: DesktopIconType[] = [
@@ -31,11 +31,14 @@ const DESKTOP_ICONS: DesktopIconType[] = [
   { id: 'control-panel', label: 'Control Panel', icon: 'Settings', component: 'ControlPanel' },
   { id: 'network', label: 'Network', icon: 'Globe', component: 'NetworkNeighborhood' },
   { id: 'privacy', label: 'Privacy Shield', icon: 'Shield', component: 'PrivacyShield' },
+  { id: 'strategy-marketplace', label: 'Strategy Marketplace', icon: 'ShoppingCart', component: 'StrategyMarketplace' },
+  { id: 'private-portfolio', label: 'Private Portfolio', icon: 'Lock', component: 'PrivatePortfolio' },
+  { id: 'signal-marketplace', label: 'Signal Marketplace', icon: 'Radio', component: 'SignalMarketplace' },
 ];
 
 const iconComponents = {
   Cpu, Settings, Wallet, Image, Globe, Shield, Bot, Beaker, GitBranch, Search,
-  ArrowDownUp, PieChart, Bell, Eye, MessageSquare, Trophy, Activity, FileText, Brain, Dna, Microscope
+  ArrowDownUp, PieChart, Bell, Eye, MessageSquare, Trophy, Activity, FileText, Brain, Dna, Microscope, ShoppingCart, Radio, Lock
 };
 
 export const Desktop: React.FC = () => {
