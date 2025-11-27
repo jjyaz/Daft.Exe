@@ -267,3 +267,28 @@ body {
   border-right-color: var(--win98-dark);
   border-bottom-color: var(--win98-dark);
 }
+
+.desktop-icons-container {
+  scrollbar-width: thin;
+  scrollbar-color: var(--win98-gray) var(--win98-dark);
+}
+
+.desktop-icons-container::-webkit-scrollbar {
+  width: 16px;
+}
+
+.desktop-icons-container::-webkit-scrollbar-track {
+  background: var(--win98-gray);
+  border: 1px solid var(--win98-dark);
+}
+
+.desktop-icons-container::-webkit-scrollbar-thumb {
+  background: var(--win98-gray);
+  border: 2px solid var(--win98-light);
+  border-right-color: var(--win98-dark);
+  border-bottom-color: var(--win98-dark);
+}
+
+.desktop-icons-container::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0;
+}
