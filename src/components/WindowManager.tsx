@@ -24,6 +24,8 @@ import { PredictionMarkets } from '../windows/PredictionMarkets';
 import { SwarmBreeding } from '../windows/SwarmBreeding';
 import { GeneticsLab } from '../windows/GeneticsLab';
 import { StrategyMarketplace } from '../windows/StrategyMarketplace';
+import { PrivatePortfolio } from '../windows/PrivatePortfolio';
+import { SignalMarketplace } from '../windows/SignalMarketplace';
 
 const windowComponents: { [key: string]: React.FC } = {
   DaftGenerator,
@@ -49,6 +51,8 @@ const windowComponents: { [key: string]: React.FC } = {
   SwarmBreeding,
   GeneticsLab,
   StrategyMarketplace,
+  PrivatePortfolio,
+  SignalMarketplace,
 };
 
 export const WindowManager: React.FC = () => {
