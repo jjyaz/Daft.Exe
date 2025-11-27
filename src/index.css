@@ -270,25 +270,52 @@ body {
 
 .desktop-icons-container {
   scrollbar-width: thin;
-  scrollbar-color: var(--win98-gray) var(--win98-dark);
+  scrollbar-color: var(--win98-gray) white;
+  scrollbar-gutter: stable;
 }
 
 .desktop-icons-container::-webkit-scrollbar {
   width: 16px;
+  -webkit-appearance: none;
+}
+
+.desktop-icons-container::-webkit-scrollbar:vertical {
+  width: 16px;
 }
 
 .desktop-icons-container::-webkit-scrollbar-track {
-  background: var(--win98-gray);
-  border: 1px solid var(--win98-dark);
+  background: white;
+  border-left: 1px solid var(--win98-dark);
+  border-top: 1px solid var(--win98-dark);
+  border-right: 1px solid var(--win98-light);
+  border-bottom: 1px solid var(--win98-light);
 }
 
 .desktop-icons-container::-webkit-scrollbar-thumb {
   background: var(--win98-gray);
-  border: 2px solid var(--win98-light);
-  border-right-color: var(--win98-dark);
-  border-bottom-color: var(--win98-dark);
+  border: 2px outset var(--win98-light);
+  min-height: 40px;
 }
 
 .desktop-icons-container::-webkit-scrollbar-thumb:hover {
   background: #a0a0a0;
+}
+
+.desktop-icons-container::-webkit-scrollbar-button {
+  display: block;
+  height: 16px;
+  background: var(--win98-gray);
+  border: 2px outset var(--win98-light);
+}
+
+.desktop-icons-container::-webkit-scrollbar-button:vertical:decrement {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><polygon points="4,2 1,6 7,6" fill="black"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.desktop-icons-container::-webkit-scrollbar-button:vertical:increment {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><polygon points="1,2 7,2 4,6" fill="black"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
 }
