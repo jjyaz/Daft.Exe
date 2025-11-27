@@ -53,7 +53,7 @@ export const Desktop: React.FC = () => {
 
   return (
     <div className="desktop-bg">
-      <div className="absolute top-4 left-4 grid gap-3" style={{ gridTemplateColumns: 'repeat(3, 80px)', maxHeight: 'calc(100vh - 120px)' }}>
+      <div className="absolute top-4 left-4 bottom-16 grid gap-3 overflow-y-auto pb-8" style={{ gridTemplateColumns: 'repeat(3, 80px)', gridAutoRows: 'min-content' }}>
         {DESKTOP_ICONS.map((icon) => {
           const IconComponent = iconComponents[icon.icon as keyof typeof iconComponents];
           return (
